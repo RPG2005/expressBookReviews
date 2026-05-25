@@ -36,6 +36,19 @@ public_users.get('/books', function (req, res) {
     return res.status(200).json(books);
 });
 
+// Internal route used by Axios to retrieve a book by ISBN
+public_users.get('/books/isbn/:isbn', function (req, res) {
+    const isbn = req.params.isbn;
+
+    if (books[isbn]) {
+        return res.status(200).json(books[isbn]);
+    }
+
+    return res.status(404).json({
+        message: "Book not found"
+    });
+});
+
 // Get the book list available in the shop using async/await with Axios
 public_users.get('/', async function (req, res) {
     try {
@@ -51,16 +64,27 @@ public_users.get('/', async function (req, res) {
     }
 });
 
-// Get book details based on ISBN
-public_users.get('/isbn/:isbn', function (req, res) {
+// Get book details based on ISBN using async/await with Axios
+public_users.get('/isbn/:isbn', async function (req, res) {
     const isbn = req.params.isbn;
-    res.setHeader('Content-Type', 'application/json');
 
-    if (books[isbn]) {
-        return res.status(200).send(JSON.stringify(books[isbn], null, 4));
+    try {
+        const response = await axios.get(`http://localhost:5000/books/isbn/${isbn}`);
+
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).send(JSON.stringify(response.data, null, 4));
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            return res.status(404).json({
+                message: "Book not found"
+            });
+        }
+
+        return res.status(500).json({
+            message: "Error retrieving book by ISBN",
+            error: error.message
+        });
     }
-
-    return res.status(404).json({ message: "Book not found" });
 });
 
 // Get book details based on author
