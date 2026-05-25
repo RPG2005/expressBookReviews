@@ -200,7 +200,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoicnBnIiwiaWF0IjoxNzc5NzAyNTE3LCJleHAiOjE3Nzk3MDYxMTd9.NQxa6zlzkT4DYvP4paP97uznRosI1RupjLxjBApU6Ss"
+            "value": "Bearer {{token}}"
           },
           {
             "key": "Cookie",
