@@ -1,0 +1,69 @@
+{
+  "info": {
+    "_postman_id": "d398a295-405b-4ac8-923c-273f403badec",
+    "name": "coursera-expressBookReviews",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5400157"
+  },
+  "item": [
+    {
+      "name": "GetAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetOneBy isbn",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/isbn/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "isbn",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetBy author",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/author/Unknown",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "author",
+            "Unknown"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
