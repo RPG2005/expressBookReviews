@@ -70,6 +70,27 @@ public_users.get('/books/author/:author', function (req, res) {
     });
 });
 
+// Internal route used by Axios to retrieve books by title
+public_users.get('/books/title/:title', function (req, res) {
+    const title = req.params.title;
+    const bookKeys = Object.keys(books);
+    const result = {};
+
+    bookKeys.forEach((key) => {
+        if (books[key].title === title) {
+            result[key] = books[key];
+        }
+    });
+
+    if (Object.keys(result).length > 0) {
+        return res.status(200).json(result);
+    }
+
+    return res.status(404).json({
+        message: "No books found with this title"
+    });
+});
+
 // Get the book list available in the shop using async/await with Axios
 public_users.get('/', async function (req, res) {
     try {
@@ -131,25 +152,27 @@ public_users.get('/author/:author', async function (req, res) {
     }
 });
 
-// Get all books based on title
-public_users.get('/title/:title', function (req, res) {
+// Get all books based on title using async/await with Axios
+public_users.get('/title/:title', async function (req, res) {
     const title = req.params.title;
-    const bookKeys = Object.keys(books);
-    const result = {};
 
-    bookKeys.forEach((key) => {
-        if (books[key].title === title) {
-            result[key] = books[key];
+    try {
+        const response = await axios.get(`http://localhost:5000/books/title/${encodeURIComponent(title)}`);
+
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).send(JSON.stringify(response.data, null, 4));
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            return res.status(404).json({
+                message: "No books found with this title"
+            });
         }
-    });
 
-    res.setHeader('Content-Type', 'application/json');
-
-    if (Object.keys(result).length > 0) {
-        return res.status(200).send(JSON.stringify(result, null, 4));
+        return res.status(500).json({
+            message: "Error retrieving books by title",
+            error: error.message
+        });
     }
-
-    return res.status(404).json({ message: "No books found with this title" });
 });
 
 //  Get book review
