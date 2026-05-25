@@ -1,0 +1,12 @@
+services:
+  bookshop:
+    build: .
+    container_name: express-book-reviews
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm start
