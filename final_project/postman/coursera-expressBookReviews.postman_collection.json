@@ -64,6 +64,26 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "GetBy title",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/title/Fairy%20tales",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "title",
+            "Fairy%20tales"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
