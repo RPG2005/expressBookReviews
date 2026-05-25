@@ -157,6 +157,41 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "PostTakeUser token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"rpg\",\r\n    \"password\": \"1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/customer/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "customer",
+            "login"
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:5000/customer/login' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n    \"username\": \"rpg\",\r\n    \"password\": \"1234\"\r\n}'"
+      },
+      "response": []
     }
   ]
 }
