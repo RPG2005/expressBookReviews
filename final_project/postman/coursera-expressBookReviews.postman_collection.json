@@ -84,6 +84,46 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "GetReviewBy isbn",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/review/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "review",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetReviewBy isbn -fail-",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/review/999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "review",
+            "999"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
