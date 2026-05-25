@@ -192,6 +192,43 @@
         "description": "Generated from cURL: curl --location 'http://localhost:5000/customer/login' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n    \"username\": \"rpg\",\r\n    \"password\": \"1234\"\r\n}'"
       },
       "response": []
+    },
+    {
+      "name": "PutReviewWith customer auth and token",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoicnBnIiwiaWF0IjoxNzc5NzAyNTE3LCJleHAiOjE3Nzk3MDYxMTd9.NQxa6zlzkT4DYvP4paP97uznRosI1RupjLxjBApU6Ss"
+          },
+          {
+            "key": "Cookie",
+            "value": "cookies.txt"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/customer/auth/review/1?review=Great%20book",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "customer",
+            "auth",
+            "review",
+            "1"
+          ],
+          "query": [
+            {
+              "key": "review",
+              "value": "Great%20book"
+            }
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
