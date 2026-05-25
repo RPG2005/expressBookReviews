@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
@@ -30,10 +31,24 @@ public_users.post("/register", (req, res) => {
     });
 });
 
-// Get the book list available in the shop
-public_users.get('/',function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    return res.status(200).send(JSON.stringify(books, null, 4));
+// Internal route used by Axios to retrieve all books
+public_users.get('/books', function (req, res) {
+    return res.status(200).json(books);
+});
+
+// Get the book list available in the shop using async/await with Axios
+public_users.get('/', async function (req, res) {
+    try {
+        const response = await axios.get('http://localhost:5000/books');
+
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).send(JSON.stringify(response.data, null, 4));
+    } catch (error) {
+        return res.status(500).json({
+            message: "Error retrieving books",
+            error: error.message
+        });
+    }
 });
 
 // Get book details based on ISBN
